@@ -1,420 +1,129 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtitle Pro - Tafsiri | Fast</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-/* ===== RANGI 3 KUTOKA KWENYE CALCULATOR ===== */
-:root {
-    --bg-primary: #1a1a2e;
-    --bg-secondary: #16213e;
-    --bg-tertiary: #0f3460;
-    
-    /* Rangi 3 kuu za Calculator */
-    --cyan: #00d9ff;
-    --orange: #ffa500;
-    --pink: #e94560;
-    
-    /* Backgrounds */
-    --card-bg: rgba(255, 255, 255, 0.08);
-    --card-strong: rgba(255, 255, 255, 0.12);
-    --input-bg: rgba(0, 0, 0, 0.3);
-    
-    /* Text */
-    --text: #ffffff;
-    --text-soft: #a0a0a0;
-    --border: rgba(255, 255, 255, 0.12);
-    
-    /* Effects */
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    --radius: 20px;
-    --transition: all 0.3s ease;
-}
+<div class="app" id="app">
 
-/* Light Theme */
-[data-theme="light"] {
-    --bg-primary: #f0f2f5;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #e9ecef;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --card-strong: #ffffff;
-    --input-bg: #f8f9fa;
-    --text: #1a1a2e;
-    --text-soft: #666;
-    --border: rgba(0, 0, 0, 0.1);
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-}
+    <!-- Window Title (kwa Linux) -->
+    <div class="window-title">
+        <span>🌍 Subtitle Pro</span> - Tafsiri Faili za Subtitle
+    </div>
 
-body {
-    font-family: 'Poppins', 'Inter', 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    transition: var(--transition);
-}
+    <!-- HEADER -->
+    <div class="header">
+        <div class="brand">🌍 <span>Subtitle</span>Pro</div>
+        <button class="theme-btn" id="themeToggle" aria-label="Badili mandhari">🌙</button>
+    </div>
 
-/* ===== APP CONTAINER ===== */
-.app {
-    width: 100%;
-    max-width: 500px; /* Imepunguzwa ili ikae vizuri */
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 25px;
-    position: relative;
-    overflow: hidden;
-}
+    <!-- DROP ZONE -->
+    <div class="drop" id="dropZone">
+        <div class="icon">📂</div>
+        <h2>Buruta au Bonyeza</h2>
+        <p>Faili za SRT, ASS, VTT</p>
+        <small>Ukubwa max: 10MB</small>
+        <input type="file" id="fileInput" accept=".srt,.ass,.vtt,.sub" />
+    </div>
 
-/* Window Title */
-.window-title {
-    text-align: center;
-    padding: 10px 12px 14px;
-    margin: -25px -25px 20px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(0, 0, 0, 0.15);
-    color: var(--text-soft);
-    font-size: 12px;
-}
+    <!-- FILE INFO -->
+    <div class="file-info" id="fileInfo">
+        <div class="file-left">
+            <span style="font-size:22px;">📄</span>
+            <div>
+                <div class="file-name" id="fileName">movie.srt</div>
+                <div class="file-size" id="fileSize">2.4 KB</div>
+            </div>
+        </div>
+        <div class="file-right">
+            <span class="file-status" id="fileStatus">✅ Tayari</span>
+            <button class="remove-btn" id="removeFile">✕</button>
+        </div>
+    </div>
 
-.window-title span {
-    background: linear-gradient(90deg, var(--cyan), var(--orange), var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-}
+    <!-- LANGUAGE SETTINGS -->
+    <div class="settings">
+        <div class="lang-group">
+            <label>🌐 Lugha ya chanzo</label>
+            <select id="sourceLang">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ar">العربية</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+        <button class="swap-btn" id="swapBtn">⇄</button>
+        <div class="lang-group">
+            <label>🗣️ Lugha lengwa</label>
+            <select id="targetLang">
+                <option value="sw" selected>Kiswahili</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ar">العربية</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+    </div>
 
-/* HEADER */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 22px;
-}
+    <!-- TRANSLATE BUTTON -->
+    <button class="btn-primary" id="translateBtn" disabled>
+        <span class="icon">🚀</span> Tafsiri Sasa
+    </button>
 
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.6rem;
-    font-weight: 800;
-    background: linear-gradient(90deg, var(--cyan), var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    <!-- PROGRESS -->
+    <div class="progress-wrap" id="progressWrap">
+        <div class="progress-head">
+            <span id="progressTitle">Inatafsiri...</span>
+            <span class="percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+        </div>
+        <div class="progress-foot">
+            <span id="progressStats">0 mistari</span>
+            <span id="progressSpeed">0 mistari/sek</span>
+        </div>
+    </div>
 
-.brand span {
-    -webkit-text-fill-color: var(--cyan);
-    color: var(--cyan);
-}
+    <!-- RESULT + BIG DOWNLOAD BUTTON -->
+    <div class="result-box" id="resultBox">
+        <div class="result-info">
+            <span class="icon">✅</span>
+            <div>
+                <div class="name" id="resultName">faili_tafsiriwa.srt</div>
+                <div class="sub" id="resultSub">Imetafsiriwa kikamilifu</div>
+            </div>
+        </div>
+        <!-- KITUFE KIKUBU CHA KUPakua -->
+        <button class="btn-download" id="downloadBtn">
+            <span class="icon">⬇️</span> Pakua Faili
+        </button>
+    </div>
 
-.theme-btn {
-    border: 1px solid var(--border);
-    background: var(--card-strong);
-    color: var(--text);
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>⚡</span> Inatafsiri papo hapo &bull; Hakuna data inayohifadhiwa
+    </div>
+</div>
+<script src="script.js"></script>
 
-.theme-btn:hover {
-    background: rgba(0, 217, 255, 0.15);
-    border-color: var(--cyan);
-    color: var(--cyan);
-}
-
-/* DROP ZONE */
-.drop {
-    border: 2px dashed rgba(0, 217, 255, 0.4);
-    background: linear-gradient(180deg, rgba(0, 217, 255, 0.05), rgba(255, 165, 0, 0.02));
-    border-radius: 18px;
-    padding: 35px 20px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    transition: var(--transition);
-    margin-bottom: 20px;
-}
-
-.drop:hover, .drop.dragover {
-    border-color: var(--cyan);
-    background: linear-gradient(180deg, rgba(0, 217, 255, 0.1), rgba(255, 165, 0, 0.05));
-}
-
-.drop .icon { font-size: 3rem; margin-bottom: 10px; }
-.drop h2 { font-size: 1.2rem; margin-bottom: 8px; }
-.drop p { color: var(--text-soft); font-size: 0.9rem; margin-bottom: 4px; }
-.drop small { color: var(--orange); font-size: 0.8rem; font-weight: 600; }
-
-.drop input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* FILE INFO */
-.file-info {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(0, 217, 255, 0.08);
-    border: 1px solid var(--cyan);
-    border-radius: 12px;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.file-info.show { display: flex; }
-.file-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-.file-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.file-size { color: var(--text-soft); font-size: 0.8rem; }
-.file-right { display: flex; align-items: center; gap: 8px; }
-.file-status { padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; background: rgba(0, 255, 136, 0.15); color: #00ff88; }
-.file-status.error { background: rgba(233, 69, 96, 0.15); color: var(--pink); }
-.remove-btn { background: transparent; border: none; color: var(--pink); font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
-.remove-btn:hover { transform: scale(1.2); }
-
-/* =========================================
-   SETTINGS (MUHIMU: KUREKEBISHA MSHALE)
-   ========================================= */
-.settings {
-    display: grid;
-    grid-template-columns: 1fr 50px 1fr;
-    gap: 12px;
-    align-items: end;
-    margin-bottom: 20px;
-}
-
-.lang-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0; /* Inazuia select kuvunja layout */
-}
-
-.lang-group label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--text-soft);
-    font-weight: 700;
-}
-
-.lang-group select {
-    width: 100%;
-    border: 1px solid var(--border);
-    background: var(--input-bg);
-    color: var(--text);
-    border-radius: 10px;
-    padding: 12px 35px 12px 12px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 8'%3E%3Cpath fill='%2300d9ff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    transition: var(--transition);
-}
-
-.lang-group select:focus {
-    outline: none;
-    border-color: var(--cyan);
-    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.2);
-}
-
-/* MSHALE UMEREKEBISHWA HAPA */
-.swap-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px; /* Imefanywa mraba kamili */
-    border-radius: 50%; /* Kama duara */
-    border: 1px solid var(--border);
-    background: var(--card-strong);
-    color: var(--orange);
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: var(--transition);
-    flex-shrink: 0;
-    align-self: center; /* Inaleta katikati kima wima */
-}
-
-.swap-btn:hover {
-    background: rgba(255, 165, 0, 0.15);
-    border-color: var(--orange);
-    transform: rotate(180deg);
-}
-
-/* BUTTONS */
-.btn-primary {
-    width: 100%;
-    border: none;
-    border-radius: 12px;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
-    color: #000;
-    font-size: 1.1rem;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-bottom: 15px;
-}
-
-.btn-primary:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
-}
-
-.btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: var(--text-soft);
-}
-
-/* PROGRESS */
-.progress-wrap {
-    display: none;
-    background: rgba(0, 217, 255, 0.05);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-.progress-wrap.show { display: block; }
-.progress-head { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; }
-.progress-head .percent { color: var(--cyan); font-weight: 800; }
-.progress-track { height: 8px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; overflow: hidden; }
-.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--orange), var(--pink)); transition: width 0.3s ease; }
-.progress-foot { display: flex; justify-content: space-between; margin-top: 8px; color: var(--text-soft); font-size: 0.75rem; }
-
-/* RESULT */
-.result-box {
-    display: none;
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 217, 255, 0.1));
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    border-radius: 15px;
-    padding: 15px;
-    margin-top: 10px;
-}
-.result-box.show { display: block; }
-.result-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-.result-info .name { font-weight: 700; }
-.result-info .sub { color: var(--text-soft); font-size: 0.8rem; }
-
-.btn-download {
-    width: 100%;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-    color: #000;
-    font-size: 1.1rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-.btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4); }
-
-/* FOOTER */
-.footer {
-    margin-top: 20px;
-    border-top: 1px solid var(--border);
-    padding-top: 15px;
-    text-align: center;
-    color: var(--text-soft);
-    font-size: 0.8rem;
-}
-.footer span { color: var(--orange); }
-
-/* =========================================
-   RESPONSIVE (SIMU)
-   ========================================= */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-        align-items: flex-start;
-    }
-
-    .app {
-        padding: 18px 15px;
-        border-radius: 16px;
-    }
-
-    .window-title {
-        margin: -18px -15px 15px;
-        padding: 8px;
-        font-size: 10px;
-    }
-
-    .brand { font-size: 1.3rem; }
-    .theme-btn { width: 40px; height: 40px; font-size: 1rem; }
-
-    .drop { padding: 25px 15px; }
-    .drop .icon { font-size: 2.5rem; }
-    .drop h2 { font-size: 1.1rem; }
-
-    /* FILE INFO KWENYE SIMU */
-    .file-info {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .file-right {
-        justify-content: space-between;
-        margin-top: 5px;
-    }
-
-    /* =========================================
-       SETTINGS KWENYE SIMU (KUREKEBISHA MSHALE)
-       ========================================= */
-    .settings {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .swap-btn {
-        width: 100%; /* Inachukua upana wote */
-        height: 45px;
-        border-radius: 10px; /* Inakuwa mstatili mzuri */
-        align-self: center;
-        transform: rotate(90deg); /* Mshale unaelekea chini */
-    }
-    
-    .swap-btn:hover {
-        transform: rotate(90deg) scale(1.05); /* Haiendi nje ya box */
-    }
-
-    /* BUTTONS */
-    .btn-primary, .btn-download {
-        font-size: 1rem;
-        padding: 14px;
-    }
-    
-    /* PROGRESS */
-    .progress-head { font-size: 0.85rem; }
-}
+</body>
+</html>
