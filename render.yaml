@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: subtitle-pro
+    env: static
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    autoDeploy: true
+    branch: main

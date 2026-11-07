@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtitle Pro - Tafsiri | Fast</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app" id="app">
+
+    <!-- Window Title (kwa Linux) -->
+    <div class="window-title">
+        <span>🌍 Subtitle Pro</span> - Tafsiri Faili za Subtitle
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="brand">🌍 <span>Subtitle</span>Pro</div>
+        <button class="theme-btn" id="themeToggle" aria-label="Badili mandhari">🌙</button>
+    </div>
+
+    <!-- DROP ZONE -->
+    <div class="drop" id="dropZone">
+        <div class="icon">📂</div>
+        <h2>Buruta au Bonyeza</h2>
+        <p>Faili za SRT, ASS, VTT</p>
+        <small>Ukubwa max: 10MB</small>
+        <input type="file" id="fileInput" accept=".srt,.ass,.vtt,.sub" />
+    </div>
+
+    <!-- FILE INFO -->
+    <div class="file-info" id="fileInfo">
+        <div class="file-left">
+            <span style="font-size:22px;">📄</span>
+            <div>
+                <div class="file-name" id="fileName">movie.srt</div>
+                <div class="file-size" id="fileSize">2.4 KB</div>
+            </div>
+        </div>
+        <div class="file-right">
+            <span class="file-status" id="fileStatus">✅ Tayari</span>
+            <button class="remove-btn" id="removeFile">✕</button>
+        </div>
+    </div>
+
+    <!-- LANGUAGE SETTINGS -->
+    <div class="settings">
+        <div class="lang-group">
+            <label>🌐 Lugha ya chanzo</label>
+            <select id="sourceLang">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ar">العربية</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+        <button class="swap-btn" id="swapBtn">⇄</button>
+        <div class="lang-group">
+            <label>🗣️ Lugha lengwa</label>
+            <select id="targetLang">
+                <option value="sw" selected>Kiswahili</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ar">العربية</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- TRANSLATE BUTTON -->
+    <button class="btn-primary" id="translateBtn" disabled>
+        <span class="icon">🚀</span> Tafsiri Sasa
+    </button>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap" id="progressWrap">
+        <div class="progress-head">
+            <span id="progressTitle">Inatafsiri...</span>
+            <span class="percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+        </div>
+        <div class="progress-foot">
+            <span id="progressStats">0 mistari</span>
+            <span id="progressSpeed">0 mistari/sek</span>
+        </div>
+    </div>
+
+    <!-- RESULT + BIG DOWNLOAD BUTTON -->
+    <div class="result-box" id="resultBox">
+        <div class="result-info">
+            <span class="icon">✅</span>
+            <div>
+                <div class="name" id="resultName">faili_tafsiriwa.srt</div>
+                <div class="sub" id="resultSub">Imetafsiriwa kikamilifu</div>
+            </div>
+        </div>
+        <!-- KITUFE KIKUBU CHA KUPakua -->
+        <button class="btn-download" id="downloadBtn">
+            <span class="icon">⬇️</span> Pakua Faili
+        </button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>⚡</span> Inatafsiri papo hapo &bull; Hakuna data inayohifadhiwa
+    </div>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
